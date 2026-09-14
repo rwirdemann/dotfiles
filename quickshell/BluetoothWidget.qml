@@ -77,7 +77,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: root.adapter && root.adapter.enabled ? "An" : "Aus"
+                    text: root.adapter && root.adapter.enabled ? "On" : "Off"
                     color: root.adapter && root.adapter.enabled ? "#89b4fa" : "#6c7086"
                     font.pixelSize: 12
 
@@ -126,7 +126,7 @@ Rectangle {
                             }
 
                             Text {
-                                text: modelData.connected ? "Verbunden" : "Getrennt"
+                                text: modelData.connected ? "Connected" : "Disconnected"
                                 color: modelData.connected ? "#a6e3a1" : "#6c7086"
                                 font.pixelSize: 11
                             }
@@ -144,8 +144,8 @@ Rectangle {
                 Text {
                     visible: popup.pairedDevices.length === 0
                     text: !root.adapter || !root.adapter.enabled
-                        ? "Bluetooth ist ausgeschaltet"
-                        : "Keine gekoppelten Geräte"
+                        ? "Bluetooth is turned off"
+                        : "No paired devices"
                     color: "#6c7086"
                     font.pixelSize: 12
                 }
