@@ -20,3 +20,10 @@ ln -s ~/Work/dotfiles/quickshell ~/.config/quickshell
 rm -rf ~/.config/tmux
 ln -s ~/Work/dotfiles/tmux ~/.config/tmux
 ```
+
+## Alacritty
+
+```
+rm -rf ~/.config/alacritty
+ln -s ~/Work/dotfiles/alacritty/ ~/.config/alacritty
+```
