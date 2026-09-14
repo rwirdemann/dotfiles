@@ -27,3 +27,10 @@ ln -s ~/Work/dotfiles/tmux ~/.config/tmux
 rm -rf ~/.config/alacritty
 ln -s ~/Work/dotfiles/alacritty/ ~/.config/alacritty
 ```
+
+## Neovim
+
+```
+rm -rf ~/.config/nvim
+ln -s ~/Work/dotfiles/nvim ~/.config/nvim
+```
