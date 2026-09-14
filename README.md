@@ -13,3 +13,10 @@ ln -s ~/Work/dotfiles/hypr ~/.config/hypr
 rm -rf ~/.config/quickshell
 ln -s ~/Work/dotfiles/quickshell ~/.config/quickshell
 ```
+
+## Tmux
+
+```
+rm -rf ~/.config/tmux
+ln -s ~/Work/dotfiles/tmux ~/.config/tmux
+```
