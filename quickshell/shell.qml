@@ -5,6 +5,8 @@ import Quickshell.Hyprland
 import Quickshell.Bluetooth
 
 ShellRoot {
+    Screensaver {}
+
     Variants {
         model: Quickshell.screens
 
