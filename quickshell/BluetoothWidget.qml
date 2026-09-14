@@ -20,12 +20,15 @@ Rectangle {
     Text {
         id: btLabel
         anchors.centerIn: parent
-        font.family: "JetBrainsMono Nerd Font Mono"
-        font.pixelSize: 14
+        font.pixelSize: 12
         color: !root.adapter || !root.adapter.enabled
             ? "#6c7086"
             : (root.connectedCount > 0 ? "#89b4fa" : "#cdd6f4")
-        text: root.connectedCount > 0 ? " " + root.connectedCount : ""
+        text: !root.adapter
+            ? "BT --"
+            : !root.adapter.enabled
+                ? "BT off"
+                : (root.connectedCount > 0 ? "BT (" + root.connectedCount + ")" : "BT on")
     }
 
     MouseArea {
