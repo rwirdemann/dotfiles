@@ -1,36 +1,17 @@
 # Dotfiles
 
-## Hyprland
+## Installation
 
 ```
-rm -rf ~/.config/hypr
-ln -s ~/Work/dotfiles/hypr ~/.config/hypr
+./install.sh
 ```
 
-## Quickshell
+Symlinks the following configs into `~/.config`:
 
-```
-rm -rf ~/.config/quickshell
-ln -s ~/Work/dotfiles/quickshell ~/.config/quickshell
-```
+- hypr
+- quickshell
+- tmux
+- alacritty
+- nvim
 
-## Tmux
-
-```
-rm -rf ~/.config/tmux
-ln -s ~/Work/dotfiles/tmux ~/.config/tmux
-```
-
-## Alacritty
-
-```
-rm -rf ~/.config/alacritty
-ln -s ~/Work/dotfiles/alacritty/ ~/.config/alacritty
-```
-
-## Neovim
-
-```
-rm -rf ~/.config/nvim
-ln -s ~/Work/dotfiles/nvim ~/.config/nvim
-```
+An existing real directory is removed first; an existing symlink is simply overwritten.
