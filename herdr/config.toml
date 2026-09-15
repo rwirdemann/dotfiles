@@ -1,1 +1,7 @@
 onboarding = false
+
+[keys]
+focus_pane_left = "ctrl+cmd+left"
+focus_pane_down = "ctrl+cmd+down"
+focus_pane_up = "ctrl+cmd+up"
+focus_pane_right = "ctrl+cmd+right"
