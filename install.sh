@@ -4,7 +4,7 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 
-CONFIGS=(hypr quickshell tmux alacritty nvim)
+CONFIGS=(hypr quickshell tmux alacritty nvim herdr)
 
 for name in "${CONFIGS[@]}"; do
     src="$DOTFILES_DIR/$name"
