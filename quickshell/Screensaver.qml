@@ -7,8 +7,23 @@ Item {
     id: root
 
     property bool active: false
-    property int idleTimeout: 300
+    property int idleTimeout: 180
     property int suspendTimeout: 480
+
+    // Showing the overlay delivers a synthetic pointer-enter event with the
+    // current cursor position, which would otherwise immediately dismiss it.
+    property bool dismissArmed: false
+
+    onActiveChanged: {
+        dismissArmed = false
+        if (active) dismissArmTimer.restart()
+    }
+
+    Timer {
+        id: dismissArmTimer
+        interval: 400
+        onTriggered: root.dismissArmed = true
+    }
 
     IdleMonitor {
         timeout: root.idleTimeout
@@ -54,54 +69,60 @@ Item {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.BlankCursor
-                onPositionChanged: root.active = false
-                onClicked: root.active = false
+                onPositionChanged: if (root.dismissArmed) root.active = false
+                onClicked: if (root.dismissArmed) root.active = false
             }
 
             Item {
                 anchors.fill: parent
                 focus: root.active
 
-                Keys.onPressed: root.active = false
+                Keys.onPressed: if (root.dismissArmed) root.active = false
 
-                Item {
-                    id: bouncer
-                    width: clock.implicitWidth
-                    height: clock.implicitHeight
-                    x: parent.width / 2
-                    y: parent.height / 2
+                Canvas {
+                    id: matrixRain
+                    anchors.fill: parent
 
-                    property real dx: 1.6
-                    property real dy: 1.1
+                    readonly property string chars: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    readonly property int fontSize: 18
+                    property var drops: []
 
-                    Text {
-                        id: clock
-                        color: "#89b4fa"
-                        font.pixelSize: 64
-                        font.bold: true
-                        text: Qt.formatDateTime(new Date(), "hh:mm")
+                    function reset() {
+                        var columns = Math.max(1, Math.floor(width / fontSize))
+                        var newDrops = []
+                        for (var i = 0; i < columns; i++)
+                            newDrops.push(Math.floor(Math.random() * height / fontSize))
+                        drops = newDrops
                     }
 
-                    Timer {
-                        interval: 16
-                        running: root.active
-                        repeat: true
-                        onTriggered: {
-                            bouncer.x += bouncer.dx
-                            bouncer.y += bouncer.dy
+                    onWidthChanged: reset()
+                    onHeightChanged: reset()
 
-                            if (bouncer.x <= 0 || bouncer.x + bouncer.width >= bouncer.parent.width)
-                                bouncer.dx = -bouncer.dx
-                            if (bouncer.y <= 0 || bouncer.y + bouncer.height >= bouncer.parent.height)
-                                bouncer.dy = -bouncer.dy
+                    onPaint: {
+                        var ctx = getContext("2d")
+
+                        ctx.fillStyle = "rgba(0, 0, 0, 0.08)"
+                        ctx.fillRect(0, 0, width, height)
+
+                        ctx.fillStyle = "#00ff41"
+                        ctx.font = fontSize + "px monospace"
+
+                        for (var i = 0; i < drops.length; i++) {
+                            var char = chars.charAt(Math.floor(Math.random() * chars.length))
+                            ctx.fillText(char, i * fontSize, drops[i] * fontSize)
+
+                            if (drops[i] * fontSize > height && Math.random() > 0.975)
+                                drops[i] = 0
+
+                            drops[i]++
                         }
                     }
 
                     Timer {
-                        interval: 1000
+                        interval: 50
                         running: root.active
                         repeat: true
-                        onTriggered: clock.text = Qt.formatDateTime(new Date(), "hh:mm")
+                        onTriggered: matrixRain.requestPaint()
                     }
                 }
             }
