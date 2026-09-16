@@ -1,0 +1,9 @@
+[theme]
+mode = "dark"
+
+[bar.default]
+position = "top"
+
+start  = ["launcher", "wallpaper", "workspaces"]
+center = ["clock"]
+end    = ["tray", "notifications", "clipboard", "bluetooth", "volume", "brightness", "battery", "control-center", "session"]
