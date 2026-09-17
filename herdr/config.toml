@@ -1,11 +1,5 @@
 onboarding = false
 
-[keys]
-focus_pane_left = "ctrl+alt+left"
-focus_pane_down = "ctrl+alt+down"
-focus_pane_up = "ctrl+alt+up"
-focus_pane_right = "ctrl+alt+right"
-
 [theme]
 name = "catppuccin"
 auto_switch = false
