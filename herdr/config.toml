@@ -9,3 +9,6 @@ focus_pane_right = "prefix+right"
 [theme]
 name = "catppuccin"
 auto_switch = false
+
+[ui]
+status_indicators = "dots"
