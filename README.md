@@ -17,4 +17,8 @@ Symlinks the following configs into `~/.config`:
 - **ghostty** – terminal emulator config
 - **nvim** – Neovim config based on [LazyVim](https://www.lazyvim.org/)
 
+On macOS additionally:
+
+- **hammerspoon** – global hotkeys, linked to `~/.hammerspoon`
+
 An existing real directory is removed first; an existing symlink is simply overwritten.
