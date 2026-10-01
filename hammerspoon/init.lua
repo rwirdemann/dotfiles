@@ -28,6 +28,11 @@ hs.hotkey.bind({ "alt", "shift" }, "m", function()
   hs.application.launchOrFocus("Mail")
 end)
 
+-- Alt+Shift+S: Slack öffnen bzw. nach vorne holen
+hs.hotkey.bind({ "alt", "shift" }, "s", function()
+  hs.application.launchOrFocus("Slack")
+end)
+
 -- Cmd+Enter: Ghostty starten bzw. nach vorne holen
 hs.hotkey.bind({ "cmd" }, "return", function()
   hs.application.launchOrFocus("Ghostty")
