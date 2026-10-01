@@ -23,6 +23,11 @@ hs.hotkey.bind({ "alt", "shift" }, "n", function()
   end
 end)
 
+-- Alt+Shift+M: Mail öffnen bzw. nach vorne holen
+hs.hotkey.bind({ "alt", "shift" }, "m", function()
+  hs.application.launchOrFocus("Mail")
+end)
+
 -- Cmd+Enter: Ghostty starten bzw. nach vorne holen
 hs.hotkey.bind({ "cmd" }, "return", function()
   hs.application.launchOrFocus("Ghostty")
