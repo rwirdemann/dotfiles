@@ -1,0 +1,9 @@
+version: "2"
+linters:
+  settings:
+    errcheck:
+      exclude-functions:
+        - (io.Closer).Close
+        - fmt.Fprintf
+        - (*os.File).Close
+        - (*github.com/Azure/azure-sdk-for-go/sdk/messaging/azservicebus.Client).Close

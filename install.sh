@@ -46,3 +46,5 @@ done
 if [ "$(uname -s)" = "Darwin" ]; then
   link_config "$DOTFILES_DIR/hammerspoon" "$HOME/.hammerspoon"
 fi
+
+link_config "$DOTFILES_DIR/golangci.yml" "$HOME/.golangci.yml"
