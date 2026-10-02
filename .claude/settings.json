@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(//home/ralf/.config/**)",
+      "Edit(//home/ralf/.config/**)"
+    ]
+  }
+}

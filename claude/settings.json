@@ -1,0 +1,10 @@
+{
+  "theme": "dark",
+  "permissions": {
+    "blockReadsOutsideWorkingDirectories": true,
+    "deny": [
+      "Edit(config/**)",
+      "Read(config/**)"
+    ]
+  }
+}

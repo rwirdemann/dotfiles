@@ -48,3 +48,6 @@ if [ "$(uname -s)" = "Darwin" ]; then
 fi
 
 link_config "$DOTFILES_DIR/golangci.yml" "$HOME/.golangci.yml"
+
+mkdir -p "$HOME/.claude"
+link_config "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
