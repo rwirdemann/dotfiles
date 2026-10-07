@@ -5,7 +5,7 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 COMMON_CONFIGS=(tmux nvim)
-LINUX_CONFIGS=()
+LINUX_CONFIGS=(lazygit)
 MACOS_CONFIGS=(fish ghostty)
 
 link_config() {
@@ -45,6 +45,10 @@ done
 # Hammerspoon insists on ~/.hammerspoon, so it can't live in $CONFIG_DIR.
 if [ "$(uname -s)" = "Darwin" ]; then
   link_config "$DOTFILES_DIR/hammerspoon" "$HOME/.hammerspoon"
+
+  # Without XDG_CONFIG_HOME set, lazygit on macOS reads from Application Support.
+  mkdir -p "$HOME/Library/Application Support"
+  link_config "$DOTFILES_DIR/lazygit" "$HOME/Library/Application Support/lazygit"
 fi
 
 link_config "$DOTFILES_DIR/golangci.yml" "$HOME/.golangci.yml"
