@@ -1,3 +1,4 @@
 herdr/*.log
 herdr/*.sock
 herdr/*.json
+nvim/lazy-lock.json
