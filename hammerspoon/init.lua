@@ -23,7 +23,7 @@ hs.hotkey.bind({ "alt", "shift" }, "n", function()
 	end
 end)
 
--- Alt+Shift+M: Mail öffnen bzw. nach vorne holen
+-- Alt+Shift+E: Mail öffnen bzw. nach vorne holen
 hs.hotkey.bind({ "alt", "shift" }, "e", function()
 	hs.application.launchOrFocus("Mail")
 end)
