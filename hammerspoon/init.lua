@@ -1,26 +1,23 @@
 -- Hammerspoon Konfiguration
 
--- Alt+Shift+B: Safari öffnen bzw. nach vorne holen
+-- Alt+Shift+B: Firefox öffnen bzw. nach vorne holen
 hs.hotkey.bind({ "alt", "shift" }, "b", function()
-	hs.application.launchOrFocus("Safari")
+	hs.application.launchOrFocus("Firefox")
 end)
 
--- Alt+Shift+N: neues Safari-Fenster (startet Safari, falls es noch nicht läuft)
+-- Alt+Shift+N: neues Firefox-Fenster (startet Firefox, falls es noch nicht läuft)
 hs.hotkey.bind({ "alt", "shift" }, "n", function()
-	local safari = hs.application.get("Safari")
-	if not safari then
-		hs.application.launchOrFocus("Safari")
+	local firefox = hs.application.get("Firefox")
+	if not firefox then
+		hs.application.launchOrFocus("Firefox")
 		return
 	end
 
-	-- "make new document" statt Menü-Eintrag, damit es unabhängig von der
-	-- Sprache der Safari-Oberfläche funktioniert.
-	local ok = hs.osascript.applescript('tell application "Safari" to make new document')
-	if ok then
-		safari:activate()
-	else
-		hs.alert.show("Neues Safari-Fenster fehlgeschlagen")
-	end
+	-- Firefox hat keine brauchbare AppleScript-Unterstützung ("make new
+	-- document" gibt es nicht). Cmd+N direkt an die App zu schicken ist
+	-- unabhängig von der Sprache der Firefox-Oberfläche.
+	firefox:activate()
+	hs.eventtap.keyStroke({ "cmd" }, "n", 0, firefox)
 end)
 
 -- Alt+Shift+E: Mail öffnen bzw. nach vorne holen
@@ -31,6 +28,11 @@ end)
 -- Alt+Shift+S: Slack öffnen bzw. nach vorne holen
 hs.hotkey.bind({ "alt", "shift" }, "s", function()
 	hs.application.launchOrFocus("Slack")
+end)
+
+-- Alt+Shift+X: Excel öffnen bzw. nach vorne holen
+hs.hotkey.bind({ "alt", "shift" }, "x", function()
+	hs.application.launchOrFocus("Microsoft Excel")
 end)
 
 -- Cmd+Enter: Ghostty starten bzw. nach vorne holen
