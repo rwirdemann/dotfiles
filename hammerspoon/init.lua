@@ -35,9 +35,9 @@ hs.hotkey.bind({ "alt", "shift" }, "x", function()
 	hs.application.launchOrFocus("Microsoft Excel")
 end)
 
--- Cmd+Enter: Ghostty starten bzw. nach vorne holen
+-- Cmd+Enter: Rex starten bzw. nach vorne holen
 hs.hotkey.bind({ "cmd" }, "return", function()
-	hs.application.launchOrFocus("Ghostty")
+	hs.application.launchOrFocus("Rex Beta")
 end)
 
 -- Nächstes Nachbarfenster in einer Richtung. frontmost=true bevorzugt
