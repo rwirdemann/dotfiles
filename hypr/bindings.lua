@@ -29,3 +29,5 @@
 -- o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
 
 o.bind("SUPER + ALT + L", nil, "ddcutil setvcp 60 0x19")
+hl.unbind("SUPER + SHIFT + B")
+o.bind("SUPER + SHIFT + B", nil, "firefox")

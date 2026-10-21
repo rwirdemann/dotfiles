@@ -8,3 +8,5 @@ linters:
         - (*os.File).Close
         - (*github.com/Azure/azure-sdk-for-go/sdk/messaging/azservicebus.Client).Close
         - (io/fs.File).Close
+        - (*github.com/godbus/dbus/v5.Conn).Close
+        - neonpulse.io/modbusapp/dbus.CloseProxy
