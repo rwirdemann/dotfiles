@@ -1,28 +1,39 @@
 -- Hammerspoon Konfiguration
 
--- Alt+Shift+B: Firefox öffnen bzw. nach vorne holen
+-- Alt+Shift+B: Safari öffnen bzw. nach vorne holen
 hs.hotkey.bind({ "alt", "shift" }, "b", function()
-	hs.application.launchOrFocus("Firefox")
+	hs.application.launchOrFocus("Safari")
 end)
 
--- Alt+Shift+N: neues Firefox-Fenster (startet Firefox, falls es noch nicht läuft)
+-- Alt+Shift+N: neues Safari-Fenster (startet Safari, falls es noch nicht läuft)
 hs.hotkey.bind({ "alt", "shift" }, "n", function()
-	local firefox = hs.application.get("Firefox")
-	if not firefox then
-		hs.application.launchOrFocus("Firefox")
+	local safari = hs.application.get("Safari")
+	if not safari then
+		hs.application.launchOrFocus("Safari")
 		return
 	end
 
-	-- Firefox hat keine brauchbare AppleScript-Unterstützung ("make new
-	-- document" gibt es nicht). Cmd+N direkt an die App zu schicken ist
-	-- unabhängig von der Sprache der Firefox-Oberfläche.
-	firefox:activate()
-	hs.eventtap.keyStroke({ "cmd" }, "n", 0, firefox)
+	-- Cmd+N direkt an die App zu schicken ist unabhängig von der Sprache der
+	-- Oberfläche und davon, ob gerade ein Fenster offen ist.
+	safari:activate()
+	hs.eventtap.keyStroke({ "cmd" }, "n", 0, safari)
 end)
 
 -- Alt+Shift+E: Mail öffnen bzw. nach vorne holen
 hs.hotkey.bind({ "alt", "shift" }, "e", function()
 	hs.application.launchOrFocus("Mail")
+end)
+
+-- Alt+Shift+T: Things öffnen bzw. nach vorne holen. Über die Bundle-ID, weil
+-- die App "Things3" heißt und launchOrFocus("Things") daher ins Leere läuft.
+hs.hotkey.bind({ "alt", "shift" }, "t", function()
+	hs.application.launchOrFocusByBundleID("com.culturedcode.ThingsMac")
+end)
+
+-- Alt+Shift+O: Notizen öffnen bzw. nach vorne holen. Über die Bundle-ID, weil
+-- der angezeigte Name von der Systemsprache abhängt (Notes/Notizen).
+hs.hotkey.bind({ "alt", "shift" }, "o", function()
+	hs.application.launchOrFocusByBundleID("com.apple.Notes")
 end)
 
 -- Alt+Shift+S: Slack öffnen bzw. nach vorne holen
