@@ -9,3 +9,5 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spelllang = { "de", "en" }
   end,
 })
+
+vim.opt.spellcapcheck = ""
