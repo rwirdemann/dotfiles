@@ -1,0 +1,76 @@
+# Slavesim Configuration File
+# This file defines the transport handlers and slaves for the Modbus slave simulator
+
+# Transport handlers define the communication endpoints
+# Type can be "tcp" or "rtu"
+
+[[transport]]
+type = "tcp"
+address = "localhost:5502"
+
+[[transport]]
+type = "tcp"
+address = "localhost:5503"
+
+# Example RTU transport (uncomment to use):
+# slavesim starts socat automatically to create a virtual port pair.
+# address     = slave-side TTY (used by slavesim)
+# peer_address = client-side TTY (used by master or other tools)
+# [[transport]]
+# type = "rtu"
+# address = "/tmp/ttyV0"
+# peer_address = "/tmp/ttyV1"
+
+# Slave definitions
+# Each slave has an ID and is connected to a specific transport address
+
+[[slave]]
+id = 101
+address = "localhost:5502"
+
+  # Firmware update simulation rules
+  [[slave.rule]]
+  trigger = "on_write"
+  register = 0xA66D            # command register (42605)
+  value = 0x0100               # firmware update
+  action = "write_register"
+  write_register = 0xA668      # status register (42600)
+  write_value = 0x1000         # ready for upload
+
+  [[slave.rule]]
+  trigger = "on_write"
+  register = 0xA66D            # command register (42605)
+  value = 0x2000               # validate image
+  action = "write_register"
+  write_register = 0xA668      # status register (42600)
+  write_value = 0x2000         # image validated
+
+  [[slave.rule]]
+  trigger = "on_write"
+  register = 0xA66D            # command register (42605)
+  value = 0x3000               # run upgrade
+  action = "write_register"
+  write_register = 0x791E      # firmware version
+  write_value = 9109
+
+  [[slave.rule]]
+  trigger = "on_write"
+  register = 0xA672            # upload address register
+  value = "any"
+  plugin = "receive_package"
+
+  [[slave.rule]]
+  trigger = "on_read"
+  register = 0x791E            # firmware version
+  action = "write_register"
+  write_register = 0xA668      # status register (42600)
+  write_value = 0x0000         # idle
+
+# Example: Add more slaves as needed
+# [[slave]]
+# id = 102
+# address = "localhost:503"
+
+# [[slave]]
+# id = 103
+# address = "/tmp/virtualcom0"
